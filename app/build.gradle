@@ -54,6 +54,7 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    namespace 'com.kylobytes.monetrail'
 }
 dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
