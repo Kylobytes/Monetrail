@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Kent Delante  <leftybournes@pm.me>.
+ * Copyright (C) 2023 Kent Delante  <leftybournes@pm.me>.
  *
  * This file is part of Monetrail.
  *
@@ -17,22 +17,24 @@
  * along with Monetrail. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.kylobytes.monetrail
+package com.kylobytes.monetrail.ui.home
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import com.kylobytes.monetrail.navigation.Navigation
-import com.kylobytes.monetrail.ui.theme.MonetrailTheme
-import dagger.hilt.android.AndroidEntryPoint
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
-@AndroidEntryPoint
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            MonetrailTheme {
-                Navigation()
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun Home(name: String) {
+    Surface {
+        Scaffold { padding ->
+            Column(modifier = Modifier.padding(padding)) {
+                Text("Hello, $name")
             }
         }
     }

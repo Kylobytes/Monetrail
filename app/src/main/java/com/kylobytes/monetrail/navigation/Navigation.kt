@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Kent Delante  <leftybournes@pm.me>.
+ * Copyright (C) 2023 Kent Delante  <leftybournes@pm.me>.
  *
  * This file is part of Monetrail.
  *
@@ -17,23 +17,25 @@
  * along with Monetrail. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.kylobytes.monetrail
+package com.kylobytes.monetrail.navigation
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import com.kylobytes.monetrail.navigation.Navigation
-import com.kylobytes.monetrail.ui.theme.MonetrailTheme
-import dagger.hilt.android.AndroidEntryPoint
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.kylobytes.monetrail.ui.home.Home
 
-@AndroidEntryPoint
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            MonetrailTheme {
-                Navigation()
-            }
+@Composable
+fun Navigation(
+    navController: NavHostController = rememberNavController()
+) {
+    NavHost(
+        navController = navController,
+        startDestination = Destinations.HOME_ROUTE
+    ) {
+        composable(Destinations.HOME_ROUTE) {
+            Home("Kent")
         }
     }
 }
