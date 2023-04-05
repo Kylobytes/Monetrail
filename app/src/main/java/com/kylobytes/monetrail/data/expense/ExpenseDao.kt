@@ -17,8 +17,22 @@
  * along with Monetrail. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.kylobytes.monetrail.navigation
+package com.kylobytes.monetrail.data.expense
 
-object Destinations {
-    const val HOME = "home"
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface ExpenseDao {
+    @Insert
+    suspend fun insert(expense: Expense)
+
+    @Delete
+    suspend fun delete(expense: Expense)
+
+    @Query("SELECT * FROM expense WHERE spend_date = date('now')")
+    fun loadExpensesToday(): Flow<List<Expense>>
 }

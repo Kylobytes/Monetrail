@@ -17,8 +17,20 @@
  * along with Monetrail. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.kylobytes.monetrail.navigation
+package com.kylobytes.monetrail.data.expense
 
-object Destinations {
-    const val HOME = "home"
-}
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
+data class Expense (
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
+    @ColumnInfo
+    val label: String,
+    @ColumnInfo
+    val amount: Double,
+    @ColumnInfo(name = "spend_date")
+    val spendDate: Long
+)

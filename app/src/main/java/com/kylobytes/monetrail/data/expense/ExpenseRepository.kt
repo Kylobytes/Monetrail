@@ -17,25 +17,15 @@
  * along with Monetrail. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.kylobytes.monetrail.ui.home
+package com.kylobytes.monetrail.data.expense
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun Home(name: String) {
-    Surface {
-        Scaffold { padding ->
-            Column(modifier = Modifier.padding(padding)) {
-                Text("Hello, $name")
-            }
-        }
-    }
+@Singleton
+class ExpenseRepository @Inject constructor(
+    private val expenseDao: ExpenseDao
+) {
+    fun expensesToday(): Flow<List<Expense>> = expenseDao.loadExpensesToday()
 }

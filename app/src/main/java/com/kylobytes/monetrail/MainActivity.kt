@@ -22,17 +22,25 @@ package com.kylobytes.monetrail
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.kylobytes.monetrail.navigation.Navigation
+import androidx.compose.material3.*
+import com.kylobytes.monetrail.navigation.AppNavigation
+import com.kylobytes.monetrail.ui.AppBottomBar
 import com.kylobytes.monetrail.ui.theme.MonetrailTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MonetrailTheme {
-                Navigation()
+                Surface {
+                    Scaffold(
+                        bottomBar = { AppBottomBar() },
+                        content = { AppNavigation(paddingValues = it) }
+                    )
+                }
             }
         }
     }

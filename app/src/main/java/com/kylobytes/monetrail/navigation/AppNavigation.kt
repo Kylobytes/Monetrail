@@ -19,23 +19,28 @@
 
 package com.kylobytes.monetrail.navigation
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.kylobytes.monetrail.ui.home.Home
+import com.kylobytes.monetrail.ui.home.HomeScreen
+import com.kylobytes.monetrail.ui.home.HomeViewModel
 
 @Composable
-fun Navigation(
-    navController: NavHostController = rememberNavController()
+fun AppNavigation(
+    navController: NavHostController = rememberNavController(),
+    paddingValues: PaddingValues
 ) {
     NavHost(
         navController = navController,
-        startDestination = Destinations.HOME_ROUTE
+        startDestination = Destinations.HOME
     ) {
-        composable(Destinations.HOME_ROUTE) {
-            Home("Kent")
+        composable(Destinations.HOME) {
+            val viewModel = hiltViewModel<HomeViewModel>()
+            HomeScreen(paddingValues, viewModel)
         }
     }
 }

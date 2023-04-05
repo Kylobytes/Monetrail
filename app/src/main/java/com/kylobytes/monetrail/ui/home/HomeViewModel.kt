@@ -17,8 +17,24 @@
  * along with Monetrail. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.kylobytes.monetrail.navigation
+package com.kylobytes.monetrail.ui.home
 
-object Destinations {
-    const val HOME = "home"
+import androidx.lifecycle.ViewModel
+import com.kylobytes.monetrail.data.expense.ExpenseDao
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import javax.inject.Inject
+
+@HiltViewModel
+class HomeViewModel @Inject constructor (
+    expenseDao: ExpenseDao
+): ViewModel() {
+    private val _expensesToday = expenseDao.loadExpensesToday()
+    private val _showExpenseDialog = MutableStateFlow(false)
+
+    val expensesToday = _expensesToday
+    val showExpenseDialog = _showExpenseDialog
+
+    fun addNewExpense() { _showExpenseDialog.value = true }
+    fun hideExpenseDialog() { _showExpenseDialog.value = false }
 }

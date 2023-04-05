@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Kent Delante  <leftybournes@pm.me>.
+ * Copyright (C) 2023 Kent Delante  <leftybournes@pm.me>.
  *
  * This file is part of Monetrail.
  *
@@ -17,9 +17,6 @@
  * along with Monetrail. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.kylobytes.monetrail.data
+package com.kylobytes.monetrail.utils
 
-import androidx.room.RoomDatabase
-
-abstract class Database : RoomDatabase() {
-}
+const val DATABASE_NAME = "monetrail.db"
