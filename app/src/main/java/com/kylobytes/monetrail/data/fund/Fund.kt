@@ -17,30 +17,18 @@
  * along with Monetrail. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.kylobytes.monetrail.di
+package com.kylobytes.monetrail.data.fund
 
-import android.content.Context
-import com.kylobytes.monetrail.data.AppDatabase
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@Module
-@InstallIn(SingletonComponent::class)
-class DatabaseModule {
-
-    @Singleton
-    @Provides
-    fun provideAppDatabase(
-        @ApplicationContext context: Context
-    ): AppDatabase = AppDatabase.getInstance(context)
-
-    @Provides
-    fun provideExpenseDao(database: AppDatabase) = database.expenseDao()
-
-    @Provides
-    fun provideFundDao(database: AppDatabase) = database.fundDao()
-}
+@Entity
+data class Fund(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
+    @ColumnInfo
+    val name: String,
+    @ColumnInfo
+    val amount: String
+)
