@@ -19,8 +19,6 @@
 
 package com.kylobytes.monetrail.ui
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -29,30 +27,48 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
-import com.kylobytes.monetrail.R
-import com.kylobytes.monetrail.navigation.Destinations
+import com.kylobytes.monetrail.navigation.Screen
 
 @Composable
 fun AppBottomBar(
-    navController: NavController = rememberNavController()
+    navController: NavController
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val selectedDestination =
-        navBackStackEntry?.destination?.route ?: Destinations.HOME
+    val currentDestination = navBackStackEntry?.destination
+
+    val screens = listOf(
+        Screen.Home
+    )
 
     NavigationBar {
-        NavigationBarItem(
-            selected = selectedDestination == Destinations.HOME,
-            onClick = { navController.navigate(Destinations.HOME) },
-            icon = {
-                Icon(
-                    Icons.Filled.Home,
-                    contentDescription = stringResource(R.string.home)
+        screens.forEach { screen ->
+                NavigationBarItem(
+                    selected = currentDestination?.hierarchy?.any {
+                        it.route == screen.route
+                    } == true,
+                    onClick = {
+                        navController.navigate(screen.route) {
+                            popUpTo(
+                                navController.graph.findStartDestination().id
+                            ) {
+                                saveState = true
+                            }
+
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                    },
+                    icon = {
+                        Icon(
+                            screen.icon,
+                            contentDescription = stringResource(screen.resourceId)
+                        )
+                    },
+                    label = { Text(stringResource(screen.resourceId)) }
                 )
-            },
-            label = { Text(stringResource(R.string.home)) }
-        )
+            }
     }
 }

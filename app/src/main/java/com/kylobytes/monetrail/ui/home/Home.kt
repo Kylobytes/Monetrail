@@ -22,7 +22,9 @@ package com.kylobytes.monetrail.ui.home
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedIconButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -30,14 +32,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.kylobytes.monetrail.R
 import com.kylobytes.monetrail.ui.expense.ExpenseDialog
 
 @Composable
-fun HomeScreen(
-    paddingValues: PaddingValues,
-    homeViewModel: HomeViewModel
-) {
+fun Home(navController: NavController) {
+    val homeViewModel = hiltViewModel<HomeViewModel>()
     val expensesToday by homeViewModel.expensesToday.collectAsState(listOf())
     val showExpenseDialog by homeViewModel
         .showExpenseDialog
@@ -45,7 +47,6 @@ fun HomeScreen(
 
     BoxWithConstraints(
         modifier = Modifier
-            .padding(paddingValues)
             .fillMaxSize(),
     ) {
         if (expensesToday.isEmpty()) {
