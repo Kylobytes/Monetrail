@@ -27,7 +27,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FundDao {
-    @Query("SELECT name, amount FROM funds")
+    @Query("SELECT * FROM fund")
     fun all(): Flow<Fund>
 
     @Insert

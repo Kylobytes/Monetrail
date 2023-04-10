@@ -25,10 +25,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.kylobytes.monetrail.data.expense.Expense
 import com.kylobytes.monetrail.data.expense.ExpenseDao
+import com.kylobytes.monetrail.data.fund.Fund
 import com.kylobytes.monetrail.data.fund.FundDao
 import com.kylobytes.monetrail.utils.DATABASE_NAME
 
-@Database(entities = [Expense::class], version = 1, exportSchema = false)
+@Database(
+    entities = [Expense::class, Fund::class],
+    version = 1,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun expenseDao(): ExpenseDao
     abstract fun fundDao(): FundDao
