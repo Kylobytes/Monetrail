@@ -1,154 +1,50 @@
 [versions]
-activityCompose = "1.7.1"
-androidGradlePlugin = "8.0.1"
-androidKtx = "1.10.1"
-collectionKtx = "1.2.0"
-compose = "1.4.7"
-composeBom = "2023.05.01"
+activityCompose = "1.9.0"
+androidGradlePlugin = "8.5.0"
+androidKtx = "1.13.1"
+collectionKtx = "1.4.0"
+composeBom = "2024.06.00"
 espresso = "3.5.1"
 extJunit = "1.1.5"
-hilt = "2.46.1"
-hiltNavigationCompose = "1.0.0"
+hilt = "2.51.1"
+hiltNavigationCompose = "1.2.0"
 junit = "4.13.2"
-kotlin = "1.8.21"
-lifecycle = "2.6.1"
-navigation = "2.5.3"
-room = "2.5.1"
+kotlin = "2.0.0"
+ksp = "2.0.0-1.0.22"
+lifecycle = "2.8.2"
+navigation = "2.7.7"
+room = "2.6.1"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit"}
+activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+android-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidKtx" }
+collection-ktx = { group = "androidx.collection", name = "collection-ktx", version.ref = "collectionKtx" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "extJunit" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-android-gradle-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
+hilt-android-testing = { group = "com.google.dagger", name ="hilt-android-testing", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+lifecycle-compiler = { group = "androidx.lifecycle", name = "lifecycle-compiler", version.ref = "lifecycle" }
+lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+lifecycle-viewmodel-savedstate = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-savedstate", version.ref = "lifecycle" }
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "navigation" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 
-[libraries.activity-compose]
-group = "androidx.activity"
-name = "activity-compose"
-version.ref = "activityCompose"
-
-[libraries.android-ktx]
-group = "androidx.core"
-name = "core-ktx"
-version.ref = "androidKtx"
-
-[libraries.collection-ktx]
-group = "androidx.collection"
-name = "collection-ktx"
-version.ref = "collectionKtx"
-
-[libraries.compose-bom]
-group = "androidx.compose"
-name = "compose-bom"
-version.ref = "composeBom"
-
-[libraries.espresso-core]
-group = "androidx.test.espresso"
-name = "espresso-core"
-version.ref = "espresso"
-
-[libraries.ext-junit]
-group = "androidx.test.ext"
-name = "junit"
-version.ref = "extJunit"
-
-[libraries.hilt-android]
-group = "com.google.dagger"
-name = "hilt-android"
-version.ref = "hilt"
-
-[libraries.hilt-android-gradle-plugin]
-group = "com.google.dagger"
-name = "hilt-android-gradle-plugin"
-version.ref = "hilt"
-
-[libraries.hilt-android-testing]
-group = "com.google.dagger"
-name = "hilt-android-testing"
-version.ref = "hilt"
-
-[libraries.hilt-compiler]
-group = "com.google.dagger"
-name = "hilt-compiler"
-version.ref = "hilt"
-
-[libraries.hilt-navigation-compose]
-group = "androidx.hilt"
-name = "hilt-navigation-compose"
-version.ref = "hiltNavigationCompose"
-
-[libraries.kotlin-gradle-plugin]
-group = "org.jetbrains.kotlin"
-name = "kotlin-gradle-plugin"
-version.ref = "kotlin"
-
-[libraries.lifecycle-compiler]
-group = "androidx.lifecycle"
-name = "lifecycle-compiler"
-version.ref = "lifecycle"
-
-[libraries.lifecycle-runtime-ktx]
-group = "androidx.lifecycle"
-name = "lifecycle-runtime-ktx"
-version.ref = "lifecycle"
-
-[libraries.lifecycle-viewmodel-compose]
-group = "androidx.lifecycle"
-name = "lifecycle-viewmodel-compose"
-version.ref = "lifecycle"
-
-[libraries.lifecycle-viewmodel-ktx]
-group = "androidx.lifecycle"
-name = "lifecycle-viewmodel-ktx"
-version.ref = "lifecycle"
-
-[libraries.lifecycle-viewmodel-savedstate]
-group = "androidx.lifecycle"
-name = "lifecycle-viewmodel-savedstate"
-version.ref = "lifecycle"
-
-[libraries.navigation-compose]
-group = "androidx.navigation"
-name = "navigation-compose"
-version.ref = "navigation"
-
-[libraries.navigation-testing]
-group = "androidx.navigation"
-name = "navigation-testing"
-version.ref = "navigation"
-
-[libraries.navigation-ui-ktx]
-group = "androidx.navigation"
-name = "navigation-ui-ktx"
-version.ref = "navigation"
-
-[libraries.room-compiler]
-group = "androidx.room"
-name = "room-compiler"
-version.ref = "room"
-
-[libraries.room-ktx]
-group = "androidx.room"
-name = "room-ktx"
-version.ref = "room"
-
-[libraries.room-runtime]
-group = "androidx.room"
-name = "room-runtime"
-version.ref = "room"
-
-[plugins.android-application]
-id = "com.android.application"
-version.ref = "androidGradlePlugin"
-
-[plugins.android-library]
-id = "com.android.library"
-version.ref = "androidGradlePlugin"
-
-[plugins.dagger-hilt-android]
-id = "com.google.dagger.hilt.android"
-version.ref = "hilt"
-
-[plugins.kotlin-android]
-id = "org.jetbrains.kotlin.android"
-version.ref = "kotlin"
-
-[plugins.kotlin-kapt]
-id = "org.jetbrains.kotlin.kapt"
-version.ref = "kotlin"
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin"}

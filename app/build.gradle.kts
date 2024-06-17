@@ -1,18 +1,19 @@
-@Suppress("DSL_SCOPE_VIOLATION")
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.compose.compiler)
 }
 android {
-    compileSdk = 33
+    compileSdk = 34
     namespace = "com.kylobytes.monetrail"
 
     defaultConfig {
         applicationId = "com.kylobytes.monetrail"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -51,7 +52,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.get()
+        kotlinCompilerExtensionVersion = "1.4.7"
     }
     packaging {
         resources {
@@ -61,10 +62,11 @@ android {
 }
 
 dependencies {
+    val composeBom = platform(libs.compose.bom)
+
     implementation(libs.android.ktx)
     implementation(libs.collection.ktx)
 
-    val composeBom = platform(libs.compose.bom)
     implementation(composeBom)
     implementation(libs.activity.compose)
 
@@ -75,30 +77,26 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.lifecycle.viewmodel.savedstate)
-    kapt(libs.lifecycle.compiler)
+    ksp(libs.lifecycle.compiler)
 
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-    kapt(libs.room.runtime)
+    ksp(libs.room.compiler)
 
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.hilt.android.testing)
-    kaptAndroidTest(libs.hilt.compiler)
+    kspAndroidTest(libs.hilt.compiler)
     testImplementation(libs.hilt.android.testing)
-    kaptTest(libs.hilt.compiler)
+    kspTest(libs.hilt.compiler)
 
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
     androidTestImplementation(composeBom)
     androidTestImplementation(libs.navigation.testing)
-}
-
-kapt {
-    correctErrorTypes = true
 }
