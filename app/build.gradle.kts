@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.collection.ktx)
 
     implementation(composeBom)
+    implementation(libs.compose.material3)
     implementation(libs.activity.compose)
 
     implementation(libs.navigation.compose)

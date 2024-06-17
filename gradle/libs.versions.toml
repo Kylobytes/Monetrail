@@ -12,6 +12,7 @@ junit = "4.13.2"
 kotlin = "2.0.0"
 ksp = "2.0.0-1.0.22"
 lifecycle = "2.8.2"
+material3 = "1.2.1"
 navigation = "2.7.7"
 room = "2.6.1"
 
@@ -21,6 +22,7 @@ activity-compose = { group = "androidx.activity", name = "activity-compose", ver
 android-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidKtx" }
 collection-ktx = { group = "androidx.collection", name = "collection-ktx", version.ref = "collectionKtx" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3"}
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "extJunit" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
