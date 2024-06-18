@@ -45,10 +45,7 @@ fun Home(navController: NavController) {
         .showExpenseDialog
         .collectAsState(false)
 
-    BoxWithConstraints(
-        modifier = Modifier
-            .fillMaxSize(),
-    ) {
+    Box(Modifier.fillMaxSize()) {
         if (expensesToday.isEmpty()) {
             HomeEmptyContent { homeViewModel.addNewExpense() }
         } else {
