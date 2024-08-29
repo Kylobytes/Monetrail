@@ -36,7 +36,7 @@ import com.kylobytes.monetrail.R
 
 @Composable
 fun ExpenseDialog(onCloseClick: () -> Unit) {
-    var label by rememberSaveable { mutableStateOf("") }
+    var name by rememberSaveable { mutableStateOf("") }
     var amount by rememberSaveable { mutableStateOf("") }
 
     Surface(modifier = Modifier.fillMaxSize()) {
@@ -69,8 +69,8 @@ fun ExpenseDialog(onCloseClick: () -> Unit) {
             Row(modifier = Modifier.fillMaxWidth()) {
                 TextField(
                     label = { Text(stringResource(R.string.name)) },
-                    value = label,
-                    onValueChange = { label = it }
+                    value = name,
+                    onValueChange = { name = it }
                 )
 
                 Spacer(Modifier.padding(8.dp))
