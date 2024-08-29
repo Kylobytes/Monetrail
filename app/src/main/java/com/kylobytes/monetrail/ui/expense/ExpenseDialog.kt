@@ -72,9 +72,11 @@ fun ExpenseDialog(onCloseClick: () -> Unit) {
                     value = name,
                     onValueChange = { name = it }
                 )
+            }
 
-                Spacer(Modifier.padding(8.dp))
+            Spacer(Modifier.padding(8.dp))
 
+            Row(modifier = Modifier.fillMaxWidth()) {
                 TextField(
                     label = { Text(stringResource(R.string.amount)) },
                     value = amount,
