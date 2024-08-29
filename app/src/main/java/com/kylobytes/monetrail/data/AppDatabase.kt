@@ -23,6 +23,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.kylobytes.monetrail.data.category.Category
 import com.kylobytes.monetrail.data.expense.Expense
 import com.kylobytes.monetrail.data.expense.ExpenseDao
 import com.kylobytes.monetrail.data.fund.Fund
@@ -30,7 +31,7 @@ import com.kylobytes.monetrail.data.fund.FundDao
 import com.kylobytes.monetrail.utils.DATABASE_NAME
 
 @Database(
-    entities = [Expense::class, Fund::class],
+    entities = [Category::class, Expense::class, Fund::class],
     version = 1,
     exportSchema = false
 )
