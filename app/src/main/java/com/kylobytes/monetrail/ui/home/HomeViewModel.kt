@@ -35,6 +35,7 @@ class HomeViewModel @Inject constructor (
     val expensesToday = _expensesToday
     val showExpenseDialog = _showExpenseDialog
 
-    fun addNewExpense() { _showExpenseDialog.value = true }
-    fun hideExpenseDialog() { _showExpenseDialog.value = false }
+    fun toggleExpenseDialog() {
+        _showExpenseDialog.value = !_showExpenseDialog.value
+    }
 }
