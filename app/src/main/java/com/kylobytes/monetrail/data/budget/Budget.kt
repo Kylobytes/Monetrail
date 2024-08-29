@@ -23,8 +23,16 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.kylobytes.monetrail.data.category.Category
 
-@Entity(foreignKeys = [])
+@Entity(foreignKeys = [
+    ForeignKey(
+        entity = Category::class,
+        parentColumns = [ "id" ],
+        childColumns = [ "categoryId" ],
+        onDelete = ForeignKey.CASCADE
+    )
+])
 data class Budget(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
