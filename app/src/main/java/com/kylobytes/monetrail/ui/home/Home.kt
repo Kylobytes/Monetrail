@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.kylobytes.monetrail.R
+import com.kylobytes.monetrail.ui.budget.BudgetDialog
 import com.kylobytes.monetrail.ui.expense.ExpenseDialog
 
 @Composable
@@ -44,10 +45,16 @@ fun Home(navController: NavController) {
     val showExpenseDialog by homeViewModel
         .showExpenseDialog
         .collectAsState(false)
+    val showBudgetDialog by homeViewModel
+        .showBudgetDialog
+        .collectAsState(false)
 
     Box(Modifier.fillMaxSize()) {
         if (expensesToday.isEmpty()) {
-            HomeEmptyContent { homeViewModel.addNewExpense() }
+            HomeEmptyContent(
+                { homeViewModel.toggleBudgetDialog() },
+                { homeViewModel.toggleExpenseDialog() }
+            )
         } else {
             Column(
                 modifier = Modifier
@@ -65,7 +72,7 @@ fun Home(navController: NavController) {
                         modifier = Modifier.align(Alignment.CenterVertically)
                     )
                     OutlinedIconButton(
-                        onClick = { homeViewModel.addNewExpense() }
+                        onClick = { homeViewModel.toggleExpenseDialog() }
                     ) {
                         Icon(
                             Icons.Default.Add,
@@ -78,6 +85,10 @@ fun Home(navController: NavController) {
     }
 
     if (showExpenseDialog) {
-        ExpenseDialog(onCloseClick = { homeViewModel.hideExpenseDialog() })
+        ExpenseDialog(onCloseClick = { homeViewModel.toggleExpenseDialog() })
+    }
+
+    if (showBudgetDialog) {
+        BudgetDialog(onCloseClick = { homeViewModel.toggleBudgetDialog() })
     }
 }

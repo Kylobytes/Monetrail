@@ -24,6 +24,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,27 +34,32 @@ import androidx.compose.ui.unit.dp
 import com.kylobytes.monetrail.R
 
 @Composable
-fun HomeEmptyContent(onAddClick: () -> Unit) {
+fun HomeEmptyContent(
+    onAddBudgetClick: () -> Unit,
+    onAddExpenseClick: () -> Unit
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxSize()
     ) {
-        /*Row(
-            modifier = Modifier.fillMaxSize(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {*/
-            Text(stringResource(R.string.home_empty_expenses))
-            Spacer(Modifier.size(8.dp))
-            Button(onClick = { onAddClick() }) {
-                Icon(
-                    Icons.Outlined.Add,
-                    stringResource(R.string.add_expense)
-                )
-                Spacer(Modifier.size(4.dp))
-                Text(stringResource(R.string.add_expense))
-            }
-        //}
+        Text(stringResource(R.string.home_empty_message))
+        Spacer(Modifier.size(8.dp))
+        OutlinedButton(onClick = onAddBudgetClick) {
+            Icon(
+                Icons.Outlined.Add,
+                stringResource(R.string.add_budget)
+            )
+            Spacer(Modifier.size(4.dp))
+            Text(stringResource(R.string.add_budget))
+        }
+        Button(onClick = onAddExpenseClick) {
+            Icon(
+                Icons.Outlined.Add,
+                stringResource(R.string.add_expense)
+            )
+            Spacer(Modifier.size(4.dp))
+            Text(stringResource(R.string.add_expense))
+        }
     }
 }

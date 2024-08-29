@@ -31,11 +31,16 @@ class HomeViewModel @Inject constructor (
 ): ViewModel() {
     private val _expensesToday = expenseDao.loadExpensesToday()
     private val _showExpenseDialog = MutableStateFlow(false)
+    private val _showBudgetDialog = MutableStateFlow(false)
 
     val expensesToday = _expensesToday
     val showExpenseDialog = _showExpenseDialog
+    val showBudgetDialog = _showBudgetDialog
 
     fun toggleExpenseDialog() {
         _showExpenseDialog.value = !_showExpenseDialog.value
+    }
+    fun toggleBudgetDialog() {
+        _showBudgetDialog.value = !_showBudgetDialog.value
     }
 }
