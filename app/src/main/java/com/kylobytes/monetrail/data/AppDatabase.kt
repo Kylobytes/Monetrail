@@ -24,7 +24,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.kylobytes.monetrail.data.budget.Budget
+import com.kylobytes.monetrail.data.budget.BudgetDao
 import com.kylobytes.monetrail.data.category.Category
+import com.kylobytes.monetrail.data.category.CategoryDao
 import com.kylobytes.monetrail.data.expense.Expense
 import com.kylobytes.monetrail.data.expense.ExpenseDao
 import com.kylobytes.monetrail.data.fund.Fund
@@ -39,6 +41,8 @@ import com.kylobytes.monetrail.utils.DATABASE_NAME
 abstract class AppDatabase : RoomDatabase() {
     abstract fun expenseDao(): ExpenseDao
     abstract fun fundDao(): FundDao
+    abstract fun budgetDao(): BudgetDao
+    abstract fun categoryDao(): CategoryDao
 
     companion object {
         @Volatile
