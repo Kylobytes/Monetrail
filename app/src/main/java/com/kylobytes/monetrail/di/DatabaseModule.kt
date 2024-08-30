@@ -43,4 +43,10 @@ class DatabaseModule {
 
     @Provides
     fun provideFundDao(database: AppDatabase) = database.fundDao()
+
+    @Provides
+    fun provideBudgetDao(database: AppDatabase) = database.budgetDao()
+
+    @Provides
+    fun provideCategoryDao(database: AppDatabase) = database.categoryDao()
 }
