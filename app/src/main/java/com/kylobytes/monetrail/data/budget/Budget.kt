@@ -35,9 +35,9 @@ import com.kylobytes.monetrail.data.category.Category
 ])
 data class Budget(
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
-    @ColumnInfo
+    val id: Long = 0,
+    @ColumnInfo(index = true)
     val categoryId: Long,
     @ColumnInfo
-    val amount: Long
+    val amount: Double
 )

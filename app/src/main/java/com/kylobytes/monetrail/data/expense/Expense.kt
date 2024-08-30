@@ -26,7 +26,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class Expense (
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Long = 0,
     @ColumnInfo
     val label: String,
     @ColumnInfo
