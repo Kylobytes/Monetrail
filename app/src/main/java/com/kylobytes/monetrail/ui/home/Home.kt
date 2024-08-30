@@ -19,7 +19,13 @@
 
 package com.kylobytes.monetrail.ui.home
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Icon
@@ -42,12 +48,13 @@ import com.kylobytes.monetrail.ui.expense.ExpenseDialog
 fun Home(navController: NavController) {
     val homeViewModel = hiltViewModel<HomeViewModel>()
     val expensesToday by homeViewModel.expensesToday.collectAsState(listOf())
-    val showExpenseDialog by homeViewModel
-        .showExpenseDialog
+    val expenseDialogShown by homeViewModel
+        .expenseDialogShown
         .collectAsState(false)
-    val showBudgetDialog by homeViewModel
-        .showBudgetDialog
+    val budgetDialogShown by homeViewModel
+        .budgetDialogShown
         .collectAsState(false)
+    val categories by homeViewModel.categories.collectAsState(listOf())
 
     Box(Modifier.fillMaxSize()) {
         if (expensesToday.isEmpty()) {
@@ -84,11 +91,15 @@ fun Home(navController: NavController) {
         }
     }
 
-    if (showExpenseDialog) {
+    if (expenseDialogShown) {
         ExpenseDialog(onCloseClick = { homeViewModel.toggleExpenseDialog() })
     }
 
-    if (showBudgetDialog) {
-        BudgetDialog(onCloseClick = { homeViewModel.toggleBudgetDialog() })
+    if (budgetDialogShown) {
+        BudgetDialog(
+            categories,
+            { homeViewModel.toggleBudgetDialog() },
+            homeViewModel::saveBudget
+        )
     }
 }

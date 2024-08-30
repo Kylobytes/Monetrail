@@ -20,27 +20,53 @@
 package com.kylobytes.monetrail.ui.home
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.kylobytes.monetrail.data.budget.Budget
+import com.kylobytes.monetrail.data.budget.BudgetRepository
+import com.kylobytes.monetrail.data.category.Category
+import com.kylobytes.monetrail.data.category.CategoryRepository
 import com.kylobytes.monetrail.data.expense.ExpenseDao
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor (
-    expenseDao: ExpenseDao
+    expenseDao: ExpenseDao,
+    private val budgetRepository: BudgetRepository,
+    private val categoryRepository: CategoryRepository
 ): ViewModel() {
     private val _expensesToday = expenseDao.loadExpensesToday()
-    private val _showExpenseDialog = MutableStateFlow(false)
-    private val _showBudgetDialog = MutableStateFlow(false)
+    private val _expenseDialogShown = MutableStateFlow(false)
+    private val _budgetDialogShown = MutableStateFlow(false)
+    private val _categories = MutableStateFlow(listOf<Category>())
+
+    init {
+        viewModelScope.launch {
+            categoryRepository.all.collect { _categories.value = it }
+        }
+    }
 
     val expensesToday = _expensesToday
-    val showExpenseDialog = _showExpenseDialog
-    val showBudgetDialog = _showBudgetDialog
+    val expenseDialogShown = _expenseDialogShown
+    val budgetDialogShown = _budgetDialogShown
+    val categories = _categories
 
     fun toggleExpenseDialog() {
-        _showExpenseDialog.value = !_showExpenseDialog.value
+        _expenseDialogShown.value = !_expenseDialogShown.value
     }
     fun toggleBudgetDialog() {
-        _showBudgetDialog.value = !_showBudgetDialog.value
+        _budgetDialogShown.value = !_budgetDialogShown.value
+    }
+
+    suspend fun saveBudget(category: String, amount: String) {
+        val match = categories.value.firstOrNull { it.name == category }
+        val categoryId: Long = match?.id ?: categoryRepository.add(Category(name = category))
+
+        budgetRepository
+            .add(Budget(amount = amount.toDouble(), categoryId = categoryId))
+
+        _budgetDialogShown.value = false
     }
 }
